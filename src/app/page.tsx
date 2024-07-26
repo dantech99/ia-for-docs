@@ -1,10 +1,66 @@
-import Image from "next/image";
+import CardsDoc from "@/components/cardDoc";
 
 export default function Home() {
+  interface IData {
+    title: string;
+    description: string;
+    sources: Array<{ name: string; url: string }>;
+  }
+
+  const data: IData[] = [
+    {
+      title: "GitHub",
+      description:
+        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+      sources: [
+        {
+          name: "github/docs",
+          url: "chat/react",
+        },
+      ],
+    },
+    {
+      title: "GitHub",
+      description:
+        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+      sources: [
+        {
+          name: "github/docs",
+          url: "chat/mdn",
+        },
+      ],
+    },
+    {
+      title: "GitHub",
+      description:
+        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+      sources: [
+        {
+          name: "github/docs",
+          url: "chat/nextjs",
+        },
+      ],
+    },
+    {
+      title: "GitHub",
+      description:
+        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+      sources: [
+        {
+          name: "github/docs",
+          url: "chat/astro",
+        },
+      ],
+    },
+  ];
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-     <h1>Hola mundo</h1>
-     <p>esta sera una aplicacion para explorar en las documentacione de los dioferentes lenguajes de programnacion, frameworks, libreriars y herramientas que ayudan a agilizar el aprendizaje y el uso</p>
-    </main>
+    <section className="max-w-screen-xl px-4 py-8 mx-auto lg:py-5 ">
+      <h2 className="text-4xl font-bold text-gray-900 py-4">Documentation</h2>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {data.map((item, index) => (
+          <CardsDoc key={index} {...item} />
+        ))}
+      </div>
+    </section>
   );
 }
