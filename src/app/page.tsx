@@ -9,6 +9,7 @@ export default function Home() {
     description: string;
     icon: any;
     sources: Array<{ name: string; url: string }>;
+    route: string;
   }
 
   const data: IData[] = [
@@ -23,6 +24,7 @@ export default function Home() {
           url: "https://es.react.dev/learn",
         },
       ],
+      route: 'chat/reactjs'
     },
     {
       title: "MDN",
@@ -35,6 +37,7 @@ export default function Home() {
           url: "https://developer.mozilla.org/es/",
         },
       ],
+      route: 'chat/mdn'
     },
     {
       title: "Next.js",
@@ -47,6 +50,7 @@ export default function Home() {
           url: "https://nextjs.org/docs",
         },
       ],
+      route: 'chat/nextjs'
     },
     {
       title: "Astro Build",
@@ -59,6 +63,7 @@ export default function Home() {
           url: "https://docs.astro.build/en/getting-started/",
         },
       ],
+      route: 'chat/astro'
     },
   ];
   return (
