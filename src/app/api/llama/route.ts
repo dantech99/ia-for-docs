@@ -11,20 +11,14 @@ const groq = createOpenAI({
 export  async function POST(req: Request) {
   const { messages } = await req.json();
   const referer = req.headers.get('referer');
-  const slug = referer.split('/').pop();
+  const slug = referer ? referer.split('/').pop() : null;
 
-  const urlDocs = {
-    'react': 'https://reactjs.org/docs/getting-started.html',
-    'next': 'https://nextjs.org/docs/getting-started',
-  }
-
-  const urlSlug = urlDocs[slug] ;
   
 
-  console.log('slug', urlSlug);
+  console.log('slug', slug);
   const result = await streamText({
     model: groq('llama3-8b-8192'),
-    system: `eres una herramienta que le permite a los desarrolladores de software respondiendo preguntas teniendo en cuenta una documentacion seleccionada por el usuario, en este caso  buscaras en la documentacion de ${urlSlug}, no respondas preguntas que no tengan que ver con ${urlSlug}, si la pregunta no tiene nada que ver con ${urlSlug}, respondes con el siguiente mensaje "No tengo informacion sobre esa pregunta" si es slug es reactjs no respondas preguntas de nextjs y viceversa, no respondas preguntas sobre otra tecnologia que no sea ${urlSlug}`,
+    system: `eres una herramienta que le permite a los desarrolladores de software respondiendo preguntas teniendo en cuenta una documentacion seleccionada por el usuario, en este caso  buscaras en la documentacion de ${slug}, no respondas preguntas que no tengan que ver con ${slug}, si la pregunta no tiene nada que ver con ${slug}, respondes con el siguiente mensaje "No tengo informacion sobre esa pregunta" si es slug es reactjs no respondas preguntas de nextjs y viceversa, no respondas preguntas sobre otra tecnologia que no sea ${slug}`,
     messages,
   });
 
