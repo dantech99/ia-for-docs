@@ -15,7 +15,7 @@ export default function Home() {
       sources: [
         {
           name: "github/docs",
-          url: "chat/react",
+          url: "chat/reactjs",
         },
       ],
     },

@@ -2,6 +2,7 @@
 
 import { SearchIcon } from "@/components/SearchIcon";
 import ReactLogo from "@/components/ReactLogo";
+import Markdown from "react-markdown";
 import {
   Combobox,
   ComboboxInput,
@@ -14,6 +15,7 @@ import {
 } from "@headlessui/react";
 import { useState } from "react";
 import {useChat} from "ai/react";
+
 
 interface Question {
   id: number;
@@ -48,7 +50,11 @@ export default function Chat() {
   const [selectQuestion, setSelectQuestion] = useState(questions[0]);
   const [query, setQuery] = useState("");
 
-  const {messages, input, handleInputChange, handleSubmit} = useChat();
+
+  const {messages, input, handleInputChange, handleSubmit} = useChat({
+    api: '/api/llama',
+    streamMode:'stream-data',
+  });
 
   const filterQuestion =
     query === ""
@@ -58,7 +64,7 @@ export default function Chat() {
         });
 
   return (
-    <div className="flex justify-center content-center items-center h-screen  flex-col">
+    <div className="flex justify-center  items-center   flex-col h-screen">
 
       <div className=" p-2 top-32  ">
         <div className="flex justify-center items-center text-3xl font-semibold gap-3">
@@ -66,8 +72,36 @@ export default function Chat() {
         </div>
       </div>
 
+      {/* si hay una respuesta de la api quiero que el Combobox se oculte y se muestre el mensaje de la api */}
+
+      {
+        messages.length > 0 ? (
+          <div className="w-3/5 bg-white rounded-xl p-10 mb-10 max-h-96 overflow-auto">
+            {
+              messages.map(m => (
+                <div key={m.id} className="whitespace-pre-wrap">
+                  {m.role === 'user' ? (
+                    <div className="text-2xl font-bold pb-5">
+                      {m.content}
+                    </div>
+                  ) : (
+                    <div className="mb-4">
+                      <Markdown className='markdown'>{m.content}</Markdown>
+                    </div>
+                    
+                  )}
+                </div>
+              ))
+            }
+          </div>
+        ) : null
+      }
+
+
       <Combobox
         onSubmit={handleSubmit}
+        value={selectQuestion}
+        onClose={() => setQuery("")}
         as="form"
         className=" w-2/3 -top-20 "
       >
@@ -76,7 +110,7 @@ export default function Chat() {
             <SearchIcon className="w-8 h-8 md:w-12 md:h-12" />
           </div>
           <ComboboxInput
-            value={input}
+            value={input || ""}
             aria-label="Assignee"
             displayValue={(question: Question | null) =>
               question?.pregunta ?? ""
@@ -101,20 +135,6 @@ export default function Chat() {
           ))}
         </ComboboxOptions>
       </Combobox>
-
-
-      <div className=" w-full max-w-md mx-auto bg-white rounded-xl p-10 mt-10">
-      {
-        messages.map(m => (
-          <div key={m.id} className="whitespace-pre-wrap">
-            {m.role === 'user' ? 'User: ' : 'AI: '}
-
-            {m.content}
-          </div>
-        ))
-      }
-      </div>
-  
     </div>
   );
 }
