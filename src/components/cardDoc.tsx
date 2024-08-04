@@ -14,7 +14,7 @@ export default function CardsDoc({
       className="rounded-lg border bg-card text-card-foreground shadow-sm bg-white"
       data-v0-t="card"
     >
-      <div className="flex flex-col space-y-1.5 p-6">
+      <div className="flex flex-col space-y-1.5 p-6 h-1/2">
         <div className="flex items-center space-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ export default function CardsDoc({
         </div>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
-      <div className="p-6">
+      <div className="p-6 h-1/4">
         <p className="text-sm text-gray-500">SOURCES</p>
         <div className="flex items-center space-x-2">
           <svg
@@ -79,7 +79,7 @@ export default function CardsDoc({
           className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
           href={sources[0].url}
         >
-          Start a new thread
+          Iniciar un chat
         </Link>
       </div>
     </div>

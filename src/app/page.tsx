@@ -1,61 +1,69 @@
 import CardsDoc from "@/components/cardDoc";
+import React  from "@/icons/ReactIcon";
+import Nextjs from "@/icons/NextjsIcon";
+import Astro from "@/icons/AstroIcon";
 
 export default function Home() {
   interface IData {
     title: string;
     description: string;
+    icon: any;
     sources: Array<{ name: string; url: string }>;
   }
 
   const data: IData[] = [
     {
-      title: "GitHub",
+      title: "React.js",
       description:
-        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+        "Informacion sobre React.js, una biblioteca de JavaScript para construir interfaces de usuario",
+      icon: React,
       sources: [
         {
           name: "github/docs",
-          url: "chat/reactjs",
+          url: "https://es.react.dev/learn",
         },
       ],
     },
     {
-      title: "GitHub",
+      title: "MDN",
       description:
-        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+        "MDN Web Docs es una plataforma creada por Mozilla para proporcionar documentación y recursos educativos sobre tecnologías web como HTML, CSS y JavaScript",
+        icon: React,
       sources: [
         {
           name: "github/docs",
-          url: "chat/mdn",
+          url: "https://developer.mozilla.org/es/",
         },
       ],
     },
     {
-      title: "GitHub",
+      title: "Next.js",
       description:
-        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+        "Informacion sobre Next.js, un framework de React que permite renderizado del lado del servidor y de la vista del cliente",
+      icon: Nextjs,
       sources: [
         {
           name: "github/docs",
-          url: "chat/nextjs",
+          url: "https://nextjs.org/docs",
         },
       ],
     },
     {
-      title: "GitHub",
+      title: "Astro Build",
       description:
-        "Information about GitHubs products and services, including GitHub.com, GitHub Enterprise, and GitHub Desktop.products and services, including",
+        "Informacion sobre Astro Build, un marco de construcción de sitios web moderno y rápido",
+      icon: Astro,
       sources: [
         {
           name: "github/docs",
-          url: "chat/astro",
+          url: "https://docs.astro.build/en/getting-started/",
         },
       ],
     },
   ];
   return (
     <section className="max-w-screen-xl px-4 py-8 mx-auto lg:py-5 ">
-      <h2 className="text-4xl font-bold text-gray-900 py-4">Documentation</h2>
+      <h2 className="text-4xl font-bold text-gray-900 py-4">Documentaciones</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {data.map((item, index) => (
           <CardsDoc key={index} {...item} />
