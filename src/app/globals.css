@@ -4,33 +4,34 @@
 
 
 .markdown pre {
-  background: #f4f4f4;
-    border: 1px solid #ddd;
-    border-left: 3px solid #8e9091;
-    color: #666;
-    page-break-inside: avoid;
-    font-family: monospace;
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 1.6em;
-    max-width: 100%;
-    overflow: auto;
-    padding: 1em 1.5em;
-    display: block;
-    word-wrap: break-word;
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
 }
-.markdown  code {
-  font-family: Consolas, "Courier New", monospace;
-  color: rgb(94, 92, 93);
-  background-color: #f1f1f1;
+.markdown pre  code {
+  background-color: #f7f7f7;
   padding: 2px 4px;
-  border-radius: 4px;
-}
-
-pre code {
-  display: block;
-  white-space: pre;
+  border-radius: 3px;
+  font-size: 0.9em;
   overflow-x: auto;
   max-width: 100%;
   min-width: 100px;
+  font-family: 'Fira Code', monospace;
 }
+
+.scrollable-content {
+  background: hsl(0 0% 100%);
+  padding: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  min-height: 100px;
+  overflow-y: scroll;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  display: none;
+}
+
+

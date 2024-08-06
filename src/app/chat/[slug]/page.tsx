@@ -11,6 +11,7 @@ import {
   ComboboxInput,
 } from "@headlessui/react";
 import { useChat } from "ai/react";
+import { useRef, useEffect } from "react";
 
 
 
@@ -29,6 +30,7 @@ export default function Chat({ params }: { params: { slug: string } }) {
     streamMode: 'stream-data',
     initialInput: `Que es ${params.slug}`,
   });
+
 
   const titles: Titles = {
     reactjs: 'React.js',
@@ -49,6 +51,13 @@ export default function Chat({ params }: { params: { slug: string } }) {
   const title = titles[params.slug];
   const Icon = Icons[params.slug];
 
+  useEffect(() => {
+    const scrollableContent = document.querySelector('.scrollable-content');
+    if (scrollableContent) {
+      scrollableContent.scrollTop = scrollableContent.scrollHeight;
+    }
+  }, [messages]);
+
 
   return (
     <div className="flex justify-center  items-center   flex-col h-screen">
@@ -60,7 +69,7 @@ export default function Chat({ params }: { params: { slug: string } }) {
       </div>
       {
         messages.length > 0 ? (
-          <div className="w-3/5 bg-white rounded-xl p-10 mb-10 h-auto overflow-auto">
+          <div className="w-3/5 bg-white rounded-xl p-10 mb-10 h-auto scrollable-content">
             {
               messages.map(m => (
                 <div key={m.id} className="whitespace-pre-wrap">
